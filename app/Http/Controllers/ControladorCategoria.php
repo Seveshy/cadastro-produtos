@@ -37,6 +37,16 @@ class ControladorCategoria extends Controller
      */
     public function store(Request $request)
     {
+        $regras = [
+            'nomeCategoria' => 'required'
+        ];
+
+        $mensagens = [
+            'nomeCategoria.required' => 'Digita uma categoria aí Pé de Rato'
+        ];
+
+        $request->validate($regras, $mensagens);
+
         $cat = new Categoria();
         $cat->nome = $request->input('nomeCategoria');
         $cat->save();
